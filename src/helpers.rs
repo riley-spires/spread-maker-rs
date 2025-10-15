@@ -1,7 +1,7 @@
 use raylib::prelude::*;
 use std::fs::File;
-use std::io::prelude::Read;
 use std::io::Error;
+use std::io::prelude::Read;
 
 pub fn norm_to_reg(col: [f32; 3]) -> Color {
     Color {

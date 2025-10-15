@@ -21,7 +21,7 @@ fn main() {
         Ok(contents) => contents,
         Err(e) => {
             eprintln!("ERROR: Failed to read 'x-axis.csv':");
-            eprintln!("{}", e.to_string());
+            eprintln!("{}", e);
             exit(1);
         }
     };
