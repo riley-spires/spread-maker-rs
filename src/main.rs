@@ -1,12 +1,15 @@
+mod args;
 mod helpers;
 mod point;
 
+use args::Args;
 use std::env::consts::OS;
 use std::process::exit;
 
 use helpers::read_file;
 use point::Point;
 
+use clap::Parser;
 use imgui::{Context, FontSource};
 use raylib::core::texture::Image;
 use raylib::prelude::*;
@@ -15,12 +18,13 @@ use raylib_imgui_rs::Renderer;
 use crate::helpers::norm_to_reg;
 
 fn main() {
+    let args = Args::parse();
     let mut values: Vec<Point> = Vec::new();
 
-    let file_contents = match read_file("x-axis.csv") {
+    let file_contents = match read_file(&args.input) {
         Ok(contents) => contents,
         Err(e) => {
-            eprintln!("ERROR: Failed to read 'x-axis.csv':");
+            eprintln!("ERROR: Failed to read '{}':", args.input);
             eprintln!("{}", e);
             exit(1);
         }
